@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "stream-chat": "^8.37.0",
+    "stream-chat-react": "^11.23.2",
+    "universal-cookie": "^7.1.4"
   },
   "devDependencies": {
     "eslint": "^8",
