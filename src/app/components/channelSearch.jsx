@@ -1,19 +1,41 @@
+'use client'
 import React, { useEffect, useState } from 'react'
-import { useChatContext } from 'stream-chat-react'
-// import {SearchIcon} from
+import SearchIcon from '../assets/SearchIcon'
+
 
 const ChannelSearch = () => {
-  const [first, setfirst] = useState(second)
-  useEffect(() => {
-    first
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
   
-    return () => {
-      second
-    }
-  }, [third])
-  
+  const getChannels = async(text) => {
+      try {
+        // TODO:Fetch channels 
+      } catch (error) {
+        SetQuery('');
+      }
+  };
+
+  const handelSearch = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setQuery(e.target.value);
+    getChannels(e.target.value);
+  }
+
   return (
-    <div>Channel Search</div>
+    <div className="channel-search__container">
+      <div className="channel-search__input__wrapper">
+        <div className="channel-search__input__icon">
+          <SearchIcon />
+        </div>
+        <input
+          className="channel-search__input__text"
+          type="text"
+          value={query}
+          onChange={handelSearch}
+        />
+      </div>
+    </div>
   )
 }
 
