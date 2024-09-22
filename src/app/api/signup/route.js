@@ -7,9 +7,9 @@ const api_key = process.env.STREAM_API_KEY;
 const api_secret = process.env.STREAM_API_SECRET;
 const app_id = process.env.STREAM_APP_ID;
 
-export async function POST(req){
+export async function POST(req, res){
     try{
-        const {fullName, userName, phoneNumber, avatarURL, password, conformPassword} = req.json();
+        const {fullName, userName, phoneNumber, avatarURL, password, conformPassword} = await req.json();
         const userId = crypto.randomBytes(16).toString('hex');
         const serverClient = connect(api_key, api_secret, app_id);
         const hashedPassword = await bcrypt.hash(password, 10);
