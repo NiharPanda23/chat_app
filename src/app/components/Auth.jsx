@@ -25,28 +25,36 @@ const Auth = () => {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
-  const handelSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { fullName, userName, password, phoneNumber, avatarURL} = formData
-    const URL = "http://localhost:3000/api"
-    const response = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-      userName, password, fullName, phoneNumber, avatarURL
-    })
+    const { fullName, userName, password, phoneNumber, avatarURL } = formData;
+    const URL = "http://localhost:3000/api";
+  
+    try {
+      const response = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+        userName,
+        password,
+        ...(isSignup && { fullName, phoneNumber, avatarURL })  
+      });
+  
+      const { token, userId, fullName: returnedFullName, hashedPassword } = response.data;
 
-    const { token, userId, hashedPassword } = response.data;
-
-    cookies.set('token', token)
-    cookies.set('userName', userName)
-    cookies.set('fullName', fullName)
-    cookies.set('userId', userId)
-    if(isSignup){
-      cookies.set('phoneNumber', phoneNumber)
-      cookies.set('avatarURL', avatarURL)
-      cookies.set('hashedPassword', hashedPassword)
+      cookies.set('token', token);
+      cookies.set('userName', userName);
+      cookies.set('fullName', isSignup ? fullName : returnedFullName);
+      cookies.set('userId', userId);
+      
+      if (isSignup) {
+        cookies.set('phoneNumber', phoneNumber);
+        cookies.set('avatarURL', avatarURL);
+        cookies.set('hashedPassword', hashedPassword);
+      }
+      window.location.reload();
+    } catch (error) {
+      console.error("Error in authentication:", error);
     }
-
-    window.location.reload()
   };
+  
   const switchMode = (e) => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     
@@ -57,7 +65,7 @@ const Auth = () => {
       <div className="auth__form-container_fields">
         <div className="auth__form-container_fields-content">
           <p>{isSignup ? "Sign Up" : "Sign In"}</p>
-          <form onSubmit={handelSubmit}>
+          <form onSubmit={handleSubmit}>
             {isSignup && (
               <div className="auth__form-container_fields-content_input">
                 <label htmlFor="fullName">Full Name</label>

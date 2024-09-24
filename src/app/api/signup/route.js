@@ -14,7 +14,7 @@ export async function POST(req, res){
         const serverClient = connect(api_key, api_secret, app_id);
         const hashedPassword = await bcrypt.hash(password, 10);
         const token = serverClient.createUserToken(userId);
-        return NextResponse.json({ token, fullName, userName, userId, hashedPassword, phoneNumber }, { status: 200 });
+        return NextResponse.json({token, fullName, userName, userId, hashedPassword, phoneNumber, avatarURL}, { status: 200 });
     }catch(e){
         console.log(e);
         return NextResponse.json({response: e},{status: 500});

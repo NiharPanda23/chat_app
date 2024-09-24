@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { Channel, useChatContext } from 'stream-chat-react';
-import { ChannelInner, CreateChannel, EditChannel, TeamMessage } from './';
+import { ChannelInner, CreateChannel, EditChannel, CustomMessage } from './';
 
 const ChannelContainer = ({ isCreating, setIsCreating, setIsEditing, isEditing, createType }) => {
   const { channel } = useChatContext();
@@ -33,7 +33,7 @@ const ChannelContainer = ({ isCreating, setIsCreating, setIsEditing, isEditing, 
     <div className='channel__container'>
       <Channel
         EmptyStateIndicator={EmptyState}
-        Message={(messageProps, i) => <TeamMessage key={i} {...messageProps} />}
+        Message={(messageProps, i) => <CustomMessage key={i} {...messageProps} />}
       >
         <ChannelInner setIsEditing={setIsEditing} />
       </Channel>

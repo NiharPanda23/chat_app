@@ -1824,3 +1824,8 @@ div.rta__autocomplete.str-chat__emojisearch {
     display: none;
   }
 }
+
+.custom-message__author{
+  font-size: 15px;
+  margin-left: 40px;
+}
