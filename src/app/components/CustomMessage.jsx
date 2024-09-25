@@ -14,7 +14,7 @@ const CustomMessage = (props) => {
           {user.fullName || user.id}
         </span>
       )}
-      <MessageSimple {...props} /> 
+      <MessageSimple {...props} />
     </div>
   );
 };

@@ -1829,3 +1829,10 @@ div.rta__autocomplete.str-chat__emojisearch {
   font-size: 15px;
   margin-left: 40px;
 }
+
+.custom-message__reply {
+  color: blue;
+  cursor: pointer;
+  font-size: 12px;
+  margin-top: 5px;
+}
