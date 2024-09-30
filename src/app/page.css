@@ -225,7 +225,7 @@ body {
 }
 
 @media screen and (max-width: 960px) {
-  .str-chat-channel-list.team.light {
+  .str-chat-channel-list.team {
     position: unset;
     left: unset;
     top: unset;
@@ -1825,14 +1825,6 @@ div.rta__autocomplete.str-chat__emojisearch {
   }
 }
 
-.custom-message__author{
-  font-size: 15px;
-  margin-left: 40px;
-}
-
-.custom-message__reply {
-  color: blue;
-  cursor: pointer;
-  font-size: 12px;
-  margin-top: 5px;
+.str-chat__channel-list {
+  background-color: #005fff !important;
 }

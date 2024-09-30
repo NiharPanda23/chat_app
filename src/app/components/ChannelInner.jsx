@@ -10,7 +10,7 @@ import {
   useChatContext 
 } from 'stream-chat-react';
 
-import ChannelInfo from '../assets/Channelinfo';  // Ensure this path is correct
+import ChannelInfo from '../assets/Channelinfo';
 export const GiphyContext = React.createContext({})
 
 const ChannelInner = ({ setIsEditing }) => {

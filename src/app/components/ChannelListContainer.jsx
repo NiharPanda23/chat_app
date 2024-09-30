@@ -1,7 +1,6 @@
 "use client"
-import "../page.css"
-import React from 'react'
-import { ChannelList, ChatContext } from 'stream-chat-react';
+import React, { useState } from 'react'
+import { ChannelList, ChatContext, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 import message from '../assets/message.png'
 import myLogout from '../assets/logout.png'
@@ -33,8 +32,17 @@ const CompanyHeader = () => (
   </div>
 )
 
-const ChannelListContainer = ({ isCreating, setIsCreating, setIsEditing, setCreateType}) => {
+const CustomChannelTeamFilter = (channels) => {
+  return channels.filter((channel) => channel.type === 'team')
+}
+const CustomChannelMessagingFilter = (channels) => {
+  return channels.filter((channel) => channel.type === 'messaging')
+  
+}
 
+
+const ChannelListContent = ({ isCreating, setIsCreating, setIsEditing, setCreateType, setToggleContainer}) => {
+  const {client} = useChatContext();
   const logout = () => {
     cookies.remove("token");
     cookies.remove('userId');
@@ -46,6 +54,10 @@ const ChannelListContainer = ({ isCreating, setIsCreating, setIsEditing, setCrea
 
     window.location.reload();
   };
+
+  const filters = { members: {$in: [client.userID]}};
+
+
   return (
   <>
     <SideBar logout={logout}/>
@@ -53,28 +65,32 @@ const ChannelListContainer = ({ isCreating, setIsCreating, setIsEditing, setCrea
       <CompanyHeader/>
       <ChannelSearch/>
       <ChannelList
-        filters={{}}
-        channelRenderFilterFn={() => {}}
+        filters={filters}
+        channelRenderFilterFn={CustomChannelTeamFilter}
         List={(listProps) => (
           <TeamChannelList
             {...listProps}
             type="team"
             isCreating={isCreating}
             setIsCreating={setIsCreating}
+            setCreateType={setCreateType} 
             setIsEditing={setIsEditing}
-            setCreateType={setCreateType}
+            setToggleContainer={setToggleContainer}
           />
         )}
         Preview={(previewProps) => (
           <TeamChannelPreview
             {...previewProps}
             type="team"
+            setIsCreating={setIsCreating}
+            setIsEditing={setIsEditing}
+            setToggleContainer={setToggleContainer}
           />
         )}
       />
       <ChannelList
-        filters={{}}
-        channelRenderFilterFn={() => {}}
+        filters={filters}
+        channelRenderFilterFn={CustomChannelMessagingFilter}
         List={(listProps) => (
           <TeamChannelList
             {...listProps}
@@ -88,12 +104,44 @@ const ChannelListContainer = ({ isCreating, setIsCreating, setIsEditing, setCrea
         Preview={(previewProps) => (
           <TeamChannelPreview
             {...previewProps}
+            setIsCreating={setIsCreating}
+            setIsEditing={setIsEditing}
+            setToggleContainer={setToggleContainer}
             type="messaging"
           />
         )}
       />
     </div>
   </>  
+  )
+}
+
+const ChannelListContainer = ({setCreateType, setIsCreating, setIsEditing}) => {
+ 
+  const [toggleContainer, setToggleContainer] = useState(false)
+  
+  return(
+    <>
+      <div className="channel-list__container">
+        <ChannelListContent 
+          setIsCreating={setIsCreating}
+          setCreateType={setCreateType}
+          setIsEditing={setIsEditing} 
+        />
+      </div>
+      <div className="channel-list__container-responsive"
+        style={{left: toggleContainer ? "0%" : "-89%", backgroundColor: "#005fff"}}
+      >
+        <div className="channel-list__container-toggle" onClick={() => setToggleContainer((prevContainer) => !prevContainer)}>
+          <ChannelListContent
+            setIsCreating={setIsCreating}
+            setCreateType={setCreateType}
+            setIsEditing={setIsEditing}
+            setToggleContainer={setToggleContainer}
+          />
+        </div>
+      </div>
+    </>
   )
 }
 
