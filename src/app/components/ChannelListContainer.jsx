@@ -81,10 +81,10 @@ const ChannelListContent = ({ isCreating, setIsCreating, setIsEditing, setCreate
         Preview={(previewProps) => (
           <TeamChannelPreview
             {...previewProps}
-            type="team"
             setIsCreating={setIsCreating}
             setIsEditing={setIsEditing}
             setToggleContainer={setToggleContainer}
+            type="team"
           />
         )}
       />
@@ -97,8 +97,9 @@ const ChannelListContent = ({ isCreating, setIsCreating, setIsEditing, setCreate
             type="messaging"
             isCreating={isCreating}
             setIsCreating={setIsCreating}
+            setCreateType={setCreateType} 
             setIsEditing={setIsEditing}
-            setCreateType={setCreateType}
+            setToggleContainer={setToggleContainer}
           />
         )}
         Preview={(previewProps) => (
@@ -124,8 +125,8 @@ const ChannelListContainer = ({setCreateType, setIsCreating, setIsEditing}) => {
     <>
       <div className="channel-list__container">
         <ChannelListContent 
-          setIsCreating={setIsCreating}
-          setCreateType={setCreateType}
+          setIsCreating={setIsCreating} 
+          setCreateType={setCreateType} 
           setIsEditing={setIsEditing} 
         />
       </div>
@@ -134,8 +135,8 @@ const ChannelListContainer = ({setCreateType, setIsCreating, setIsEditing}) => {
       >
         <div className="channel-list__container-toggle" onClick={() => setToggleContainer((prevContainer) => !prevContainer)}>
           <ChannelListContent
-            setIsCreating={setIsCreating}
-            setCreateType={setCreateType}
+            setIsCreating={setIsCreating} 
+            setCreateType={setCreateType} 
             setIsEditing={setIsEditing}
             setToggleContainer={setToggleContainer}
           />
