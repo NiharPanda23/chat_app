@@ -4,7 +4,7 @@ import { ChannelList, ChatContext, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 import message from '../assets/message.png'
 import myLogout from '../assets/logout.png'
-import ChannelSearch from "./ChannelSearch";
+import ChannelSearch from './channelSearch';
 import Image from 'next/image';
 import { TeamChannelList, TeamChannelPreview } from ".";
 
