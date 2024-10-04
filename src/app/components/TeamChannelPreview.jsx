@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
 import { Avatar, useChatContext } from "stream-chat-react";
+import Image from "next/image";
+import  Group from "../assets/group.png"
+
 
 const TeamChannelPreview = ({
   setActiveChannel,
@@ -14,7 +17,7 @@ const TeamChannelPreview = ({
 
   const ChannelPreview = () => (
     <p className="channel-preview__item">
-      {channel?.data?.name || channel?.data?.id}
+      <span className="group_image"><Image src={Group} alt="group" width="27"/></span>  {channel?.data?.name || channel?.data?.id}
     </p>
     // console.log(channel?.data?.name);
     

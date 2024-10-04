@@ -822,9 +822,10 @@ body {
   height: 82px;
   background: #f7f6f8;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   border-bottom-right-radius: 16px;
+  margin-top: 20.8rem;
 }
 
 .edit-channel__button-wrapper p {
@@ -1827,4 +1828,15 @@ div.rta__autocomplete.str-chat__emojisearch {
 
 .str-chat__channel-list {
   background-color: #005fff !important;
+}
+
+.group_image{
+  margin-right: 10px;
+  background-color: #fff;
+  width: 27px;
+  height: 27px;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
