@@ -4,7 +4,7 @@ import SearchIcon from "../assets/SearchIcon";
 import { useChatContext } from "stream-chat-react";
 import { ResultsDropdown } from ".";
 
-const ChannelSearch = ({ setToggleContainer }) => {
+const Search = ({ setToggleContainer }) => {
   const { client, setActiveChannel } = useChatContext();
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -80,4 +80,4 @@ const ChannelSearch = ({ setToggleContainer }) => {
   )
 }
 
-export default ChannelSearch
+export default Search

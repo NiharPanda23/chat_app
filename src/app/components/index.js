@@ -1,6 +1,7 @@
 export {default as ChannelListContainer} from './ChannelListContainer';
 export {default as ChannelContainer} from './ChannelContainer';
 export {default as TeamChannelList} from './TeamChannelList';
+export {default as Search} from './Search'
 export {default as TeamChannelPreview} from './TeamChannelPreview'
 export {default as Auth} from './Auth';
 export {default as ChannelInner} from './ChannelInner';
