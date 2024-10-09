@@ -4,7 +4,7 @@ import { ChannelList, ChatContext, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 import message from '../assets/message.png'
 import myLogout from '../assets/logout.png'
-// import { ChannelSearch } from '.';
+import { ChannelSearch } from '.';
 import Image from 'next/image';
 import { TeamChannelList, TeamChannelPreview } from ".";
 
@@ -63,7 +63,7 @@ const ChannelListContent = ({ isCreating, setIsCreating, setIsEditing, setCreate
     <SideBar logout={logout}/>
     <div className="channel-list__list__wrapper">
       <CompanyHeader/>
-      {/* <ChannelSearch setToggleContainer={setToggleContainer}/> */}
+      <ChannelSearch setToggleContainer={setToggleContainer}/>
       <ChannelList
         filters={filters}
         channelRenderFilterFn={CustomChannelTeamFilter}
