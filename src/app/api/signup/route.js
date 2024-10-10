@@ -20,3 +20,17 @@ export async function POST(req, res){
         return NextResponse.json({response: e},{status: 500});
     }
 }
+
+export default function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust for production by replacing * with your frontend domain
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
+    if (req.method === 'POST') {
+      // Handle request logic
+      res.status(200).json({ message: 'Logged in' });
+    } else {
+      res.setHeader('Allow', ['POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
+  }
