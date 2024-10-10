@@ -28,7 +28,7 @@ const Auth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { fullName, userName, password, phoneNumber, avatarURL } = formData;
-    const URL = "http://localhost:3000/api";
+    const URL = process.env.NEXT_PUBLIC_API_URL;
   
     try {
       const response = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Avatar, useChatContext } from 'stream-chat-react';
+import Image from 'next/image';
+import Group from '../assets/group.png'
 
 const channelByUser = async ({ client, setActiveChannel, channel, setChannel }) => {
   const filters = {
@@ -33,7 +35,7 @@ const SearchResult = ({ channel, focusedId, type, setChannel, setToggleContainer
         }}
         className={focusedId === channel.id ? 'channel-search__result-container__focused' : 'channel-search__result-container' }
       >
-        <div className='result-hashtag'>#</div>
+        <div className='result-hashtag'><Image src={Group} alt="group" width="27"/></div>
         <p className='channel-search__result-text'>{channel.data.name}</p>
       </div>
     );
